@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var Person = function(name, age) {
+        this.name = name;
+        this.age = age;
+        this.doJob = function() {return 'doing job'};
+        this.company = null;
+    }
+
+    var Company = function() {
+        this.name = 'DTEK';
+        this.employees = [];
+        this.addEmpl = function(empl) {
+            this.employees.push(empl);
+            empl.company = this
+        }
+    }
+    var vasya = new Person('vasya', 15);
+    var alex = new Person('alex', 18);
+    var dtek = new Company();
+    dtek.addEmpl(vasya);
+//    dtek.addEmpl(alex);
+//    console.log(vasya)
+//    console.log(dtek)
+
+    // company.addEmpl(vasya);
+    // company.addEmpl(alex);
+
+    //console.log(vasya1);
+
+    function createPersonCopy(person) {
+
+
+        var personCopy = {};
+
+        var reference = person.company;
+        person.company = null;
+        var obj = JSON.stringify(person);
+        personCopy = JSON.parse(obj);
+        person.company = reference;
+        personCopy.company = reference;
+        personCopy.name = `${person.name}1`;
+        dtek.addEmpl(personCopy);
+//
+//        var reference = person.company;
+//        person.company = null;
+//        var obj = JSON.stringify(person);
+//        personCopy = JSON.parse(obj);
+//        personCopy.company = reference;
+//        personCopy.name = 'vasya2'
+//        //personCopy.company2 = 'google';
+//        dtek.addEmpl(personCopy);
+//
+        return personCopy
+    }
+    createPersonCopy(vasya);
+    console.log(vasya);
+    console.log(dtek);
+    // console.log(createPersonCopy(alex))
+</script>
+</body>
+</html>

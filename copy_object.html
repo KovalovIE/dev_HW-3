@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Return 3 object</title>
+
+</head>
+<body>
+
+<script>
+//    const payerTax = {
+//        name: {},
+//        age: 99,
+//        getInfo: function () { return "This is a " + this.gender + " aged " + this.age },
+//        Company: {
+//            name: "DTEK",
+//            employees: {
+//                payerTax1,
+//                payerTax2
+//            }
+//        }
+//    };
+    var Person = function(fname, lname, age) {
+        this.name = {fname, lname};
+        this.age = age;
+        this.getInfo = function() {return `My name is ${this.name.fname} ${this.name.lname}`};
+        this.setJob = function() {return 'set job'};
+        this.Company = null;
+    }
+
+    var Company = function() {
+        this.name = 'Third Reich';
+        this.employees = [];
+//        this.employees = {}
+    };
+    Company.prototype.addEmpl = function(empl) {
+
+        this.employees.push(empl);
+        empl.Company = this;
+
+//        this.employees = {}
+//        counterEmpl.push(empl.name.fname);
+//        for(var i = 0; i < counterEmpl.length; i++) {
+//            this.employees.push(empl);
+//            this.employees.name = empl;
+//            empl.Company = this;
+
+//            Object.keys(this.employees) = counterEmpl[i];
+            //console.log(arrKeys)
+            //arrKeys[i] = counterEmpl[i]
+            //console.log(arrKeys[i])
+//        }
+//        for (var x in this.employees) {
+//            Object.keys(this.employees) = counterEmpl[i]
+//            x = counterEmpl[x]
+//        }
+        //console.log(this.employees)
+    };
+
+    function createPersonCopy(person) {
+        var personCopy = {};
+        for (var x in person) {
+            personCopy[x] = person[x]
+            //console.log(personCopy[x])
+        }
+        console.log(personCopy)
+        return personCopy
+
+    }
+
+    var adolf = new Person ('Adolf', 'Hitler', 55);
+    var mahatma = new Person ('Mahatma', 'Gandhi', 77);
+    var broker = new Company();
+    //var counterEmpl = [];
+    broker.addEmpl(adolf);
+    broker.addEmpl(mahatma);
+
+    var copyAdolf = createPersonCopy(adolf)
+    broker.addEmpl(copyAdolf);
+    //console.log(counterEmpl)
+    console.log(copyAdolf);
+
+
+
+</script>
+
+</body>
+</html>
